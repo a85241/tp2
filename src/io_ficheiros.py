@@ -13,3 +13,35 @@ from veiculos import nome_ficheiro_lista_de_veiculos
 # todos os outros ficheiros io_ficheiros-*.py, e inclusive estes comentários
 
 # ...
+def carrega_as_listas_dos_ficheiros():
+    """TODO: documentação"""
+
+    lista_de_veiculos = le_de_ficheiro(nome_ficheiro_lista_de_veiculos)
+    lista_de_clientes = le_de_ficheiro(nome_ficheiro_lista_de_clientes)
+    lista_de_faturas = le_de_ficheiro(nome_ficheiro_lista_de_faturas)
+
+    return  lista_de_veiculos, lista_de_clientes, lista_de_faturas
+def guarda_as_listas_em_ficheiros(lista_de_veiculos, lista_de_clientes, lista_de_faturas):
+    """TODO: documentação
+
+    :param lista_de_clientes:
+    :param lista_de_veiculos:
+    :param lista_de_faturas:
+    """
+
+    op = input("Os dados nos ficheiros serão sobrepostos. Continuar (s/N)?")
+    if op in ['s', 'S']:
+        guarda_em_ficheiro(nome_ficheiro_lista_de_veiculos, lista_de_veiculos)
+        guarda_em_ficheiro(nome_ficheiro_lista_de_clientes, lista_de_clientes)
+        guarda_em_ficheiro(nome_ficheiro_lista_de_faturas, lista_de_faturas)
+    else:
+        print("Gravação cancelada...")
+def le_de_ficheiro(nome_ficheiro):
+    """Lê os dados de um ficheiro
+
+    :param nome_ficheiro: nome do ficheiro onde estao os dados
+    :return: o que leu do ficheiro (depende dos dados guardados)
+    """
+
+    with open(nome_ficheiro, "rb") as f:
+        return pickle.load(f)
